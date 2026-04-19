@@ -3,9 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <title>Mon site</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-  <h1>Bienvenue</h1>
-  <p>Contenu éditable via le CMS.</p>
+  <div id="content">Chargement...</div>
+
+  <script>
+    fetch('https://raw.githubusercontent.com/JJNoCode/Test/main/content/home.md')
+      .then(res => res.text())
+      .then(text => {
+        // Extraire le front matter YAML et le body
+        const parts = text.split('---').filter(p => p.trim());
+        let title = '';
+        let body = '';
+
+        if (parts.length >= 2) {
+          // Parser le front matter
+          const frontmatter = parts[0];
+          const titleMatch = frontmatter.match(/title:\s*(.+)/);
+          if (titleMatch) title = titleMatch[1].trim();
+          body = parts.slice(1).join('---').trim();
+        } else {
+          body = text;
+        }
+
+        document.getElementById('content').innerHTML = 
+          (title ? '<h1>' + title + '</h1>' : '') + 
+          marked.parse(body);
+      })
+      .catch(() => {
+        document.getElementById('content').innerHTML = 'Erreur de chargement.';
+      });
+  </script>
 </body>
 </html>
