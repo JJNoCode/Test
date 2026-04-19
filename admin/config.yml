@@ -2,7 +2,7 @@ backend:
   name: git-gateway
   repo: JJNoCode/Test
   branch: main
-  identity_url: https://auth.decapbridge.com/sites/PLACEHOLDER
+  identity_url: https://auth.decapbridge.com/sites/64ff3bee-62f8-48da-afd6-901a38cbb163
   gateway_url: https://gateway.decapbridge.com
 
 media_folder: "images"
