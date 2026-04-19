@@ -1,0 +1,20 @@
+backend:
+  name: git-gateway
+  repo: JJNoCode/Test
+  branch: main
+  identity_url: https://auth.decapbridge.com/sites/PLACEHOLDER
+  gateway_url: https://gateway.decapbridge.com
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Accueil"
+        name: "home"
+        file: "content/home.md"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
